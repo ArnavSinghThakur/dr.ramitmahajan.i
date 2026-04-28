@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Ramit Mahajan — Gastroenterology & Hepatology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --ivory: #faf8f3;
+    --forest: #1a3a2a;
+    --sage: #4a7c59;
+    --gold: #b89a5a;
+    --gold-light: #d4b87a;
+    --charcoal: #2c2c2c;
+    --muted: #6b6b6b;
+    --border: rgba(26,58,42,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--forest); }
+
+  .nav-appt {
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.25s !important;
+  }
+  .nav-appt:hover { background: var(--sage) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--forest);
+    margin-bottom: 0.4rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-dept {
+    font-size: 0.85rem;
+    color: var(--sage);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-quals {
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-left: 2px solid var(--gold);
+    padding-left: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 3rem;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--forest);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 1rem 2.2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: var(--forest);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 0.9rem; }
+  .btn-secondary::after { content: '→'; }
+
+  .hero-right {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    animation: fadeIn 1.2s 0.4s ease both;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(74,124,89,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(184,154,90,0.1) 0%, transparent 50%);
+  }
+
+  .hero-card {
+    position: relative; z-index: 2;
+    width: 380px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(26,58,42,0.15), 0 0 0 1px var(--border);
+  }
+
+  .doctor-avatar {
+    width: 100%; height: 320px;
+    background: linear-gradient(145deg, #1a3a2a 0%, #2d5a3f 50%, #4a7c59 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .avatar-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+
+  .avatar-decoration {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+    background: linear-gradient(to top, rgba(26,58,42,0.8), transparent);
+  }
+
+  .pmc-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--gold);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .hero-card-info {
+    padding: 1.5rem;
+  }
+
+  .contact-line {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .contact-line svg { flex-shrink: 0; color: var(--sage); }
+  .contact-line a { color: var(--sage); text-decoration: none; }
+  .contact-line a:hover { text-decoration: underline; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 6rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading em { font-style: italic; color: var(--sage); }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center;
+  }
+
+  .about-left { }
+
+  .about-text {
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.85;
+    margin-bottom: 1.4rem;
+    opacity: 0.88;
+  }
+
+  .about-highlight {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 1.6rem 2rem;
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .about-highlight::before {
+    content: '"';
+    font-size: 4rem;
+    line-height: 1;
+    opacity: 0.2;
+    position: absolute; top: 0.5rem; left: 1.2rem;
+  }
+
+  /* ── EXPERTISE ── */
+  .expertise-section { }
+
+  .expertise-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .expertise-card {
+    background: var(--ivory);
+    padding: 2rem 1.8rem;
+    transition: background 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .expertise-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .expertise-card:hover { background: white; transform: translateY(-2px); }
+  .expertise-card:hover::before { transform: scaleX(1); }
+
+  .expertise-icon {
+    width: 40px; height: 40px;
+    background: var(--forest);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .expertise-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.6rem;
+  }
+
+  .expertise-card p {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── RESEARCH ── */
+  .research-section {
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  .research-section .section-label { color: var(--gold-light); }
+  .research-section .section-label::before { background: var(--gold-light); }
+  .research-section .section-heading { color: var(--cream); }
+  .research-section .section-heading em { color: var(--gold-light); }
+
+  .research-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .research-stat-row {
+    display: flex; gap: 3rem; margin-bottom: 3rem;
+  }
+
+  .research-stat {
+    text-align: center;
+    flex: 1;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+  }
+
+  .research-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    display: block;
+  }
+
+  .research-stat .lbl {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .journal-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.6rem 1rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    margin-right: 0.5rem;
+  }
+  .journal-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold-light); flex-shrink: 0;
+  }
+
+  .research-focus-list {
+    list-style: none;
+  }
+  .research-focus-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.9rem;
+    opacity: 0.85;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .research-focus-list li::before {
+    content: '';
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold-light); flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: start;
+  }
+
+  .contact-form {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--ivory);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage);
+    background: white;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--forest);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--sage); }
+
+  .contact-info-block { padding-top: 1rem; }
+
+  .info-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-item:last-child { border-bottom: none; }
+
+  .info-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--forest);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .info-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .info-value {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    font-weight: 400;
+  }
+
+  .info-value a { color: var(--sage); text-decoration: none; }
+  .info-value a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 6rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: white;
+    font-weight: 400;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 5rem 2rem 3rem; }
+    .hero-right { padding: 2rem; }
+    .hero-card { width: 100%; max-width: 380px; }
+    section { padding: 4rem 2rem; }
+    .about-section { grid-template-columns: 1fr; gap: 3rem; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .research-stat-row { gap: 1rem; }
+    .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Dr. Ramit Mahajan</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact" class="nav-appt">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">DMCH · Gastroenterology &amp; Hepatology</div>
+    <h1 class="hero-name">Dr. Ramit<br><em>Mahajan</em></h1>
+    <p class="hero-title">Professor, Medical Gastroenterology</p>
+    <p class="hero-dept">Gastroenterology &amp; Hepatology</p>
+    <p class="hero-quals">
+      MBBS &nbsp;·&nbsp; MD (Medicine)<br>
+      DM (Gastroenterology)<br>
+      Fellowship in Advanced GI Endoscopy
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">815+</div>
+        <div class="stat-label">Citations</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">NEJM</div>
+        <div class="stat-label">Published In</div>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Book Appointment</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-card">
+      <div class="doctor-avatar">
+        <div class="avatar-initials">RM</div>
+        <div class="avatar-decoration"></div>
+        <div class="pmc-badge">PMC-35491</div>
+      </div>
+      <div class="hero-card-info">
+        <div class="contact-line">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.21 6.21l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+          <a href="tel:+918360177589">+91 83601 77589</a>
+        </div>
+        <div class="contact-line">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          22-B, Block-B, Tagore Nagar, Ludhiana
+        </div>
+        <div class="contact-line">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Opens 5:00 PM · Call 9am–5pm for appt.
+        </div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.8rem;">
+          <a href="tel:+918360177589" style="flex:1; display:flex; align-items:center; justify-content:center; gap:0.4rem; background:var(--forest); color:white; text-decoration:none; padding:0.55rem 0.5rem; border-radius:2px; font-size:0.75rem; font-weight:500; transition:background 0.2s;" onmouseover="this.style.background='#2d5a3f'" onmouseout="this.style.background='var(--forest)'">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.21 6.21l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+            Call Now
+          </a>
+          <a href="https://wa.me/918360177589?text=Hello%20Dr.%20Mahajan%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" style="flex:1; display:flex; align-items:center; justify-content:center; gap:0.4rem; background:#25D366; color:white; text-decoration:none; padding:0.55rem 0.5rem; border-radius:2px; font-size:0.75rem; font-weight:500; transition:background 0.2s;" onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25D366'">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-left">
+    <div class="section-label">About the Doctor</div>
+    <h2 class="section-heading">A Decade of<br><em>Expert Care</em></h2>
+  </div>
+  <div class="about-right">
+    <p class="about-text">
+      Dr. Ramit Mahajan is Professor of Gastroenterology and Hepatology who brings over a decade of clinical expertise and research experience to patient care. He has made significant contributions to the field through his work in inflammatory bowel disease, fecal microbiota transplantation (FMT), and liver failure management, with his research published in leading medical journals including the <em>New England Journal of Medicine</em>.
+    </p>
+    <p class="about-text">
+      Dr. Mahajan's approach to medicine emphasizes combining evidence-based care with personalized treatment strategies. His clinical expertise spans a comprehensive range of gastroenterological conditions — from complex IBD cases requiring advanced therapeutics to critical liver failure management with specialized interventions like plasmapheresis.
+    </p>
+    <p class="about-text">
+      What distinguishes Dr. Mahajan's practice is his commitment to staying at the forefront of medical advances while maintaining a patient-centered focus. Whether managing functional disorders, performing advanced endoscopic procedures, or treating acute liver failure, he ensures each patient receives individualized care based on the latest scientific evidence.
+    </p>
+    <div class="about-highlight">
+      Combining evidence-based care with personalized treatment strategies — ensuring every patient receives individualized attention rooted in the latest science.
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise-section" id="expertise">
+  <div class="expertise-header">
+    <div>
+      <div class="section-label">Clinical Expertise</div>
+      <h2 class="section-heading">Areas of<br><em>Specialisation</em></h2>
+    </div>
+  </div>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <div class="expertise-icon">🦠</div>
+      <h3>Inflammatory Bowel Disease</h3>
+      <p>Advanced management of Crohn's disease and ulcerative colitis with biologic and small-molecule therapeutics.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🧬</div>
+      <h3>Fecal Microbiota Transplantation</h3>
+      <p>Pioneering FMT therapy for recurrent <em>C. difficile</em> and IBD, with published research and proven outcomes.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🫀</div>
+      <h3>Liver Failure Management</h3>
+      <p>Specialised in acute and chronic liver failure, including plasmapheresis and critical hepatology interventions.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🔬</div>
+      <h3>Advanced GI Endoscopy</h3>
+      <p>Fellowship-trained in advanced endoscopic procedures including therapeutic and diagnostic interventions.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">⚕️</div>
+      <h3>Functional GI Disorders</h3>
+      <p>Comprehensive evaluation and management of IBS, GERD, functional dyspepsia, and motility disorders.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🏥</div>
+      <h3>Hepatology &amp; Liver Disease</h3>
+      <p>Full-spectrum hepatology care — NAFLD, viral hepatitis, cirrhosis, portal hypertension, and transplant workup.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="research-section" id="research">
+  <div class="section-label">Research &amp; Publications</div>
+  <h2 class="section-heading">Advancing the<br><em>Science of Care</em></h2>
+
+  <div class="research-stat-row">
+    <div class="research-stat">
+      <span class="num">815+</span>
+      <span class="lbl">Total Citations</span>
+    </div>
+    <div class="research-stat">
+      <span class="num">10+</span>
+      <span class="lbl">Years of Research</span>
+    </div>
+    <div class="research-stat">
+      <span class="num">IBD</span>
+      <span class="lbl">Primary Focus</span>
+    </div>
+    <div class="research-stat">
+      <span class="num">NEJM</span>
+      <span class="lbl">Published In</span>
+    </div>
+  </div>
+
+  <div class="research-grid">
+    <div>
+      <p style="opacity:0.7; font-size:0.85rem; margin-bottom:1.5rem;">Research published in leading international peer-reviewed journals:</p>
+      <div>
+        <div class="journal-badge"><span class="dot"></span>New England Journal of Medicine</div>
+        <div class="journal-badge"><span class="dot"></span>Gut</div>
+        <div class="journal-badge"><span class="dot"></span>The Lancet Gastroenterology</div>
+        <div class="journal-badge"><span class="dot"></span>Clinical Gastroenterology & Hepatology</div>
+        <div class="journal-badge"><span class="dot"></span>Journal of Hepatology</div>
+        <div class="journal-badge"><span class="dot"></span>United European Gastroenterology Journal</div>
+      </div>
+    </div>
+    <div>
+      <p style="opacity:0.7; font-size:0.85rem; margin-bottom:1.2rem;">Key research areas:</p>
+      <ul class="research-focus-list">
+        <li>Fecal Microbiota Transplantation (FMT) in IBD &amp; recurrent CDI</li>
+        <li>Biologic therapies in Crohn's disease and ulcerative colitis</li>
+        <li>Acute-on-chronic liver failure and plasmapheresis outcomes</li>
+        <li>Gut microbiome modulation and clinical applications</li>
+        <li>Novel endoscopic techniques in GI intervention</li>
+        <li>Predictors of response in inflammatory bowel disease</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section style="background:var(--cream); padding:4rem 6rem;">
+  <div class="section-label">Patient Reviews</div>
+  <h2 class="section-heading" style="margin-bottom:2.5rem;">What Patients<br><em>Are Saying</em></h2>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:900px;">
+    <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:1.8rem; position:relative;">
+      <div style="color:#f5c518; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:2px;">★★★★★</div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--forest); line-height:1.7; margin-bottom:1rem;">"Gentle, cooperative and soft spoken. Best doctor."</p>
+      <div style="font-size:0.75rem; color:var(--muted); display:flex; align-items:center; gap:0.4rem;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Google Review
+      </div>
+    </div>
+    <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:1.8rem; position:relative;">
+      <div style="color:#f5c518; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:2px;">★★★★★</div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--forest); line-height:1.7; margin-bottom:1rem;">"Diagnosis, treatment and behavior are praise worthy."</p>
+      <div style="font-size:0.75rem; color:var(--muted); display:flex; align-items:center; gap:0.4rem;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Google Review
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div>
+    <div class="section-label">Contact &amp; Appointments</div>
+    <h2 class="section-heading">Get in<br><em>Touch</em></h2>
+    <p style="color:var(--muted); font-size:0.9rem; margin-bottom:2rem; line-height:1.8;">
+      For appointments, call <strong style="color:var(--forest);">8360177589</strong> between 9am–5pm. You can also reach us on WhatsApp.
+    </p>
+
+    <!-- Call + WhatsApp CTA buttons -->
+    <div style="display:flex; gap:1rem; margin-bottom:2.5rem; flex-wrap:wrap;">
+      <a href="tel:+918360177589" style="display:inline-flex; align-items:center; gap:0.6rem; background:var(--forest); color:white; text-decoration:none; padding:0.9rem 1.8rem; border-radius:2px; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; transition:background 0.2s;" onmouseover="this.style.background='#2d5a3f'" onmouseout="this.style.background='var(--forest)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.21 6.21l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+        Call: +91 83601 77589
+      </a>
+      <a href="https://wa.me/918360177589?text=Hello%20Dr.%20Mahajan%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" style="display:inline-flex; align-items:center; gap:0.6rem; background:#25D366; color:white; text-decoration:none; padding:0.9rem 1.8rem; border-radius:2px; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; transition:background 0.2s;" onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25D366'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+
+    <div class="contact-info-block">
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Clinic Address</div>
+          <div class="info-value">22-B, Block-B, Udham Singh Nagar<br>Tagore Nagar, Ludhiana, Punjab 141001</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Clinic Hours</div>
+          <div class="info-value">Opens 5:00 PM (Evening OPD)<br><span style="font-size:0.8rem; color:var(--muted);">Call 9am–5pm for appointments</span></div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value"><a href="mailto:dr_ramit_mahajan@dmch.edu">dr_ramit_mahajan@dmch.edu</a></div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Registration</div>
+          <div class="info-value">PMC No. 35491</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Maps Embed -->
+    <div style="margin-top:1rem; border-radius:4px; overflow:hidden; border:1px solid var(--border); box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3422.7!2d75.8573!3d30.9010!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a834a0e2aeb37%3A0xe8d0ce72b1ecec52!2sDr.%20Ramit%20Mahajan!5e0!3m2!1sen!2sin!4v1"
+        width="100%" height="260" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a href="https://maps.google.com/?q=22-B,+Block-B,+Udham+Singh+Nagar,+Tagore+Nagar,+Ludhiana,+Punjab+141001" target="_blank" style="display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.8rem; font-size:0.8rem; color:var(--sage); text-decoration:none;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Open in Google Maps →
+    </a>
+  </div>
+
+  <div class="contact-form">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; color:var(--forest); margin-bottom:1.5rem;">Request an Appointment</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Arjun">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Sharma">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="+91 98765 43210">
+    </div>
+    <div class="form-group">
+      <label>Reason for Visit</label>
+      <select>
+        <option value="">Select a condition / concern</option>
+        <option>Inflammatory Bowel Disease (IBD)</option>
+        <option>Liver Disease / Hepatology</option>
+        <option>Advanced GI Endoscopy</option>
+        <option>Fecal Microbiota Transplantation (FMT)</option>
+        <option>Functional GI Disorders</option>
+        <option>Second Opinion / Referral</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Additional Notes</label>
+      <textarea placeholder="Please describe your symptoms or any relevant medical history…"></textarea>
+    </div>
+    <button class="form-submit" onclick="alert('Thank you! We will be in touch shortly to confirm your appointment.')">Submit Request</button>
+
+    <!-- Quick contact alternatives below form -->
+    <div style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid var(--border); display:flex; gap:0.8rem; flex-wrap:wrap;">
+      <a href="tel:+918360177589" style="flex:1; min-width:120px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; border:1.5px solid var(--forest); color:var(--forest); text-decoration:none; padding:0.7rem 1rem; border-radius:2px; font-size:0.8rem; font-weight:500; transition:all 0.2s;" onmouseover="this.style.background='var(--forest)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='var(--forest)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.21 6.21l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+        Call Clinic
+      </a>
+      <a href="https://wa.me/918360177589?text=Hello%20Dr.%20Mahajan%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" style="flex:1; min-width:120px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; border:1.5px solid #25D366; color:#25D366; text-decoration:none; padding:0.7rem 1rem; border-radius:2px; font-size:0.8rem; font-weight:500; transition:all 0.2s;" onmouseover="this.style.background='#25D366';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#25D366'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Dr. Ramit Mahajan — Gastroenterology &amp; Hepatology</div>
+  <div>PMC Reg. No. 35491 &nbsp;·&nbsp; Tagore Nagar, Ludhiana &nbsp;·&nbsp; © 2025</div>
+  <div style="display:flex; gap:1.2rem; align-items:center;">
+    <a href="tel:+918360177589" style="color:rgba(255,255,255,0.5); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.21 6.21l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+      8360177589
+    </a>
+    <a href="https://wa.me/918360177589" target="_blank" style="color:#25D366; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
